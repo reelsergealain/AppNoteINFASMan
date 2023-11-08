@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <!-- BreadCrumb -->
+  <nav aria-label="breadcrumb" role="navigation">
+    <ol class="breadcrumb adminx-page-breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">Home</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+    </ol>
+  </nav>
+
+  <div class="pb-3">
+    <h1>Tableau de bord</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-lg-3 d-flex">
+      <div class="card border-0 bg-primary text-white text-center mb-grid w-100">
+        <div class="d-flex flex-row align-items-center h-100">
+          <div class="card-icon d-flex align-items-center h-100 justify-content-center">
+            <i data-feather="shopping-cart"></i>
+          </div>
+          <div class="card-body">
+            <div class="card-info-title">Nombre d'étudient</div>
+            <h3 class="card-title mb-0"></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3 d-flex">
+      <div class="card border-0 bg-warning text-white text-center mb-grid w-100">
+        <div class="d-flex flex-row align-items-center h-100">
+          <div class="card-icon d-flex align-items-center h-100 justify-content-center">
+            <i data-feather="users"></i>
+          </div>
+          <div class="card-body">
+            <div class="card-info-title">Etudient infirmier</div>
+            <h3 class="card-title mb-0">300</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3 d-flex">
+      <div class="card border-0 bg-success text-white text-center mb-grid w-100">
+        <div class="d-flex flex-row align-items-center h-100">
+          <div class="card-icon d-flex align-items-center h-100 justify-content-center">
+            <i data-feather="users"></i>
+          </div>
+          <div class="card-body">
+            <div class="card-info-title">Etudient sage-femme</div>
+            <h3 class="card-title mb-0">124</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

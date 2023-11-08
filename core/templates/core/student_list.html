@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="row justify-content-center align-items-center g-2">
+    <div class="col-md-10">
+      <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">Matricule</th>
+          </tr>
+        </thead>
+        <tbody class="table-striped">
+          {% for student in students %}
+            <tr>
+              <th scope="row">{{ student.id }}</th>
+              <td>{{ student.first_name }}</td>
+              <td>{{ student.last_name }}</td>
+              <td>{{ student.matricule }}</td>
+              <td>{{ student.status }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

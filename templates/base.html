@@ -8,10 +8,10 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'dist/css/adminx.css' %}" media="screen" />
 
-    <!--                                            
+    <!--                                             
       # Optional Resources
       Feel free to delete these if you don't need them in your project
-                                                -->
+                                                 -->
   </head>
   <body>
     <div class="adminx-container">
@@ -67,7 +67,7 @@
               </li>
 
               <li class="sidebar-nav-item">
-                <a href="./layouts/charts_morris.html" class="sidebar-nav-link">
+                <a href="{% url 'core:create_student' %}" class="sidebar-nav-link">
                   <span class="sidebar-nav-abbr">Add</span>
                   <span class="sidebar-nav-name">Ajouter un etudient</span>
                 </a>
@@ -80,9 +80,9 @@
 
       <!-- adminx-content-aside -->
       <div class="adminx-content">
-        <!--                                             <div class="adminx-aside">
+        <!--                                              <div class="adminx-aside">
 
-        </div>                                             -->
+        </div>                                              -->
 
         <div class="adminx-main-content">
           <div class="container-fluid">
@@ -102,7 +102,7 @@
     <script src="{% static 'dist/js/adminx.js' %}"></script>
 
     <!-- If you prefer vanilla JS these are the only required scripts -->
-    <!--                                             script src="./dist/js/vendor.js"></script>
-    <script src="./dist/js/adminx.vanilla.js"></script                                            -->
+    <!--                                              script src="./dist/js/vendor.js"></script>
+    <script src="./dist/js/adminx.vanilla.js"></script                                             -->
   </body>
 </html>

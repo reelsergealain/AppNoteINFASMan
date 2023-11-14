@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <!-- BreadCrumb -->
+  <nav aria-label="breadcrumb" role="navigation">
+    <ol class="breadcrumb adminx-page-breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">Home</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+    </ol>
+  </nav>
+
+  <div class="pb-3">
+    <h1>Ajouter un nouveau étudiant</h1>
+
+    <div class="col-md-6 offset-3">
+      <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Ajouter un etudiant</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

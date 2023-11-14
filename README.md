@@ -35,6 +35,3 @@ Ce projet de gestion scolaire est développé en utilisant le framework Django e
 ## Perspectives Futures
 
 - Ce projet peut être étendu pour inclure des fonctionnalités supplémentaires telles que la gestion des enseignants, des salles de classe, ou la génération de rapports automatisés.
-
-**Remarque :**
-- Assurez-vous d'adapter les validations, les messages d'erreur, et les fonctionnalités selon les exigences spécifiques de votre établissement scolaire.

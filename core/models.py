@@ -1,5 +1,12 @@
 from django.db import models
 
+SEMESTER_1 = 1
+SEMESTER_2 = 2
+SEMESTER_CHOICES = [
+    (SEMESTER_1, '1er Sémestre'),
+    (SEMESTER_2, '2eme Sémestre'),
+]
+
 
 class TimeStampedModel(models.Model):
     """ Cette classe est abstraite. Afin de réduire les repétitions
@@ -74,51 +81,86 @@ class Subject(models.Model):
 class SubjectItem(TimeStampedModel):
     name = models.CharField(max_length=255)
     abbreviation = models.CharField(max_length=20)
+    code = models.CharField(max_length=20, null=True)
     subject = models.ForeignKey(Subject, on_delete=models.PROTECT)
 
     class Meta:
         verbose_name = 'sous matière'
+        verbose_name_plural = 'sous matières'
 
     def __str__(self):
         return str(self.name)
 
 
-# Todo/A faire: Créer les tables relatives aux notes et établir les relations.  
+class OptionSubject(models.Model):
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    order = models.PositiveBigIntegerField(default=0)
 
-# class Assignment(models.Model):
-#     name = models.CharField(max_length=255)
-#     matter = models.ForeignKey(Matter, on_delete=models.CASCADE)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
-
-#     def __str__(self):
-#         return str(self.name) + ' - ' + str(self.matter)
+    class Meta:
+        ordering = ['order']
+        verbose_name = 'matière par filière'
+        verbose_name_plural = 'matières par filière'
 
 
-# class Exam(models.Model):
-#     name = models.CharField(max_length=255)
-#     matter = models.ForeignKey(Matter, on_delete=models.CASCADE)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
+class OptionSubjectItem(models.Model):
+    name = models.CharField(max_length=50)
+    option = models.ForeignKey(Option, on_delete=models.CASCADE)
+    subject = models.ForeignKey(OptionSubject, on_delete=models.CASCADE)
+    order = models.PositiveSmallIntegerField(default=1)
+    coefficient = models.PositiveSmallIntegerField(default=0)
+    max = models.PositiveSmallIntegerField(default=20)
 
-#     def __str__(self):
-#         return str(self.name) + ' - ' + str(self.matter)
+    class Meta:
+        ordering = ['order']
+        verbose_name = 'sous-matière par filière'
+        verbose_name_plural = 'sous-matières par filière'
 
 
-# class Note(models.Model):
-#     SEMESTER_CHOICES = [
-#         ('1', '1er Sémestre'),
-#         ('2', '2eme Sémestre'),
-#     ]
-#     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-#     matter = models.ForeignKey(Matter, on_delete=models.CASCADE)
-#     sub_matter = models.ForeignKey(SubMatter, on_delete=models.CASCADE, null=True, blank=True)
-#     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE, null=True, blank=True)
-#     exam = models.ForeignKey(Exam, on_delete=models.CASCADE, null=True, blank=True)
-#     note = models.DecimalField(max_digits=5, decimal_places=2)
-#     semester = models.CharField(max_length=1, choices=SEMESTER_CHOICES)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
+class Grade(TimeStampedModel):
+    TYPE_EXAM = 'E'
+    TYPE_TEST = 'D'
+    TYPE_CHOICES = (
+        (TYPE_EXAM, 'Examen'),
+        (TYPE_TEST, 'Devoir'),
+    )
 
-#     def __str__(self):
-#         return f"{self.student} - {self.matter} - {self.semester} - {self.note}"
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    subject = models.ForeignKey(OptionSubjectItem, on_delete=models.CASCADE)
+    grade_type = models.CharField(choices=TYPE_CHOICES, default=TYPE_EXAM, 
+                                  max_length=1)
+    value = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    semester = models.CharField(max_length=1, choices=SEMESTER_CHOICES)
+
+    class Meta:
+        verbose_name = 'note'
+
+    def __str__(self):
+        return f"{self.student} - {self.semester} - {self.value}"
+
+
+class SemesterResult(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    total_points = models.DecimalField(max_digits=4, decimal_places=2)
+    decimal_field = models.DecimalField(max_digits=4, decimal_places=2)
+    semester = models.PositiveSmallIntegerField(choices=SEMESTER_CHOICES)
+    rank = models.PositiveSmallIntegerField()
+
+    class Meta:
+        verbose_name = 'résultat par semestre'
+
+    def __str__(self):
+        return f'{self.student} -> {self.average}'
+
+
+class AnnualResult(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    total_points = models.DecimalField(max_digits=4, decimal_places=2)
+    average = models.DecimalField(max_digits=4, decimal_places=2)
+    rank = models.PositiveSmallIntegerField()
+
+    class Meta:
+        verbose_name = 'résultat général annuel'
+
+    def __str__(self):
+        return f'{self.student} -> {self.average} (MGA)'
+    

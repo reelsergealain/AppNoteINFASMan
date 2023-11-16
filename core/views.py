@@ -1,4 +1,7 @@
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
+from django.views import generic
 from django.urls import reverse
 from core.forms import StudentForm
 
@@ -8,21 +11,16 @@ def home(request):
     return render(request, 'core/home.html')
 
 
-def student_list(request):
-    all_students = Student.objects.all()
-    context = {
-        'students': all_students
-    }
-    return render(request, 'core/student_list.html', context)
+class StudentsListView(generic.ListView):
+    model = Student
+    template_name = 'core/student_list.html'
+    context_object_name = 'students'
 
 
-def create_student(request):
-    if request.method == 'POST':
-        form = StudentForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect(reverse('student_list'))  # Remplacez 'student_list' par l'URL de la liste des étudiants
-    else:
-        form = StudentForm()
+class StudentCreateView(generic.CreateView):
+    template_name = 'core/create_student.html'
+    form_class = StudentForm
 
-    return render(request, 'core/create_student.html', {'form': form})
+    def form_valid(self, form):
+        form.save(True)
+        return HttpResponseRedirect(reverse('core:student_list'))

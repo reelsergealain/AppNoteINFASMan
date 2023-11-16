@@ -8,13 +8,13 @@ class StudentForm(forms.ModelForm):
             'student_id',
             'first_name',
             'last_name',
+            'gender',
             'birth_date',
             'email',
             'phone',
             'option',
             'bourse',
             'level',
-            'school_year',
         ]
 
     def clean_phone(self):
@@ -39,6 +39,8 @@ class StudentForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(StudentForm, self).__init__(*args, **kwargs)
+        self.fields['option'].initial = self.fields['option'].queryset.first()
+        self.fields['level'].initial = self.fields['level'].queryset.first()
         self.add_bootstrap_styles()
 
     def add_bootstrap_styles(self):

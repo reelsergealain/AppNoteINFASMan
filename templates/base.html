@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <link rel="stylesheet" type="text/css" href="{% static 'dist/css/adminx.css' %}" media="screen" />
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
     <!--                                             
       # Optional Resources
       Feel free to delete these if you don't need them in your project
@@ -27,13 +27,13 @@
 
         <ul class="navbar-nav d-flex justify-content-end mr-2">
           <li class="nav-item dropdown">
-            <a class="nav-link avatar-with-name" id="navbarDropdownMenuLink" data-toggle="dropdown" href="#"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg" class="d-inline-block align-top" alt="" /></a>
+            <a class="nav-link avatar-with-name" id="navbarDropdownMenuLink" data-toggle="dropdown" href="#">
+              <img src="{% static 'demo/img/logo.png' %}">
+            </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/admin">My Profile</a>
-              <a class="dropdown-item" href="#">My Tasks</a>
-              <a class="dropdown-item" href="#">Settings</a>
+              <a class="dropdown-item" href="/admin">Mon profil</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item text-danger" href="#">Sign out</a>
+              <a class="dropdown-item text-danger" href="">Déconnexion</a>
             </div>
           </li>
         </ul>
@@ -44,7 +44,7 @@
       <div class="adminx-sidebar expand-hover push">
         <ul class="sidebar-nav">
           <li class="sidebar-nav-item">
-            <a href="index.html" class="sidebar-nav-link active">
+            <a href="{% url 'core:home' %}" class="sidebar-nav-link active">
               <span class="sidebar-nav-icon"><i data-feather="home"></i></span>
               <span class="sidebar-nav-name">Dashboard</span>
               <span class="sidebar-nav-end"></span>
@@ -53,23 +53,16 @@
 
           <li class="sidebar-nav-item">
             <a class="sidebar-nav-link collapsed" data-toggle="collapse" href="#example" aria-expanded="false" aria-controls="example">
-              <span class="sidebar-nav-icon"><i data-feather="pie-chart"></i></span>
-              <span class="sidebar-nav-name">Gestion étudients</span>
+              <span class="sidebar-nav-icon"><i data-feather="users"></i></span>
+              <span class="sidebar-nav-name">Gestion étudiants</span>
               <span class="sidebar-nav-end"><i data-feather="chevron-right" class="nav-collapse-icon"></i></span>
             </a>
 
             <ul class="sidebar-sub-nav collapse" id="example">
               <li class="sidebar-nav-item">
                 <a href="{% url 'core:student_list' %}" class="sidebar-nav-link">
-                  <span class="sidebar-nav-abbr">LDE</span>
+                  <span class="sidebar-nav-abbr">Li</span>
                   <span class="sidebar-nav-name">Liste des etudients</span>
-                </a>
-              </li>
-
-              <li class="sidebar-nav-item">
-                <a href="{% url 'core:create_student' %}" class="sidebar-nav-link">
-                  <span class="sidebar-nav-abbr">Add</span>
-                  <span class="sidebar-nav-name">Ajouter un etudient</span>
                 </a>
               </li>
             </ul>
@@ -98,6 +91,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
     <script src="{% static 'dist/js/vendor.js' %}"></script>
     <script src="{% static 'dist/js/adminx.js' %}"></script>
 

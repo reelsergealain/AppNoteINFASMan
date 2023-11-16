@@ -49,16 +49,30 @@ class Level(models.Model):
 
 # Modèle pour représenter un étudiant
 class Student(TimeStampedModel):
+    GENDER_MALE = 'M'
+    GENDER_FEMALE = 'F'
+    GENDER_CHOICES = (
+        (GENDER_MALE, 'Masculin'),
+        (GENDER_MALE, 'Féminin'),
+    )
+
     student_id = models.CharField('matricule', max_length=10)  # Matricule de l'étudiant
-    first_name = models.CharField(max_length=255)             # Prénom de l'étudiant
-    last_name = models.CharField(max_length=255)              # Nom de famille de l'étudiant
-    birth_date = models.DateField()                            # Date de naissance de l'étudiant
-    email = models.EmailField()                                # Adresse e-mail de l'étudiant
-    phone = models.CharField(max_length=20)                   # Numéro de téléphone de l'étudiant
-    option = models.ForeignKey(Option, on_delete=models.PROTECT)  # Filière de l'étudiant
-    bourse = models.BooleanField(default=False)               # Indicateur de bourse
-    level = models.ForeignKey(Level, on_delete=models.PROTECT)   # Niveau de l'étudiant
-    school_year = models.ForeignKey(SchoolYear, on_delete=models.PROTECT)  # Année scolaire de l'étudiant
+    first_name = models.CharField('nom', max_length=255)             # Prénom de l'étudiant
+    last_name = models.CharField('prénoms', max_length=255)              # Nom de famille de l'étudiant
+    gender = models.CharField('sexe', max_length=1, 
+            choices=GENDER_CHOICES, null=True,
+            default=GENDER_MALE)
+    birth_date = models.DateField('date de naissance')                            # Date de naissance de l'étudiant
+    email = models.EmailField('email')                                # Adresse e-mail de l'étudiant
+    phone = models.CharField('contact', max_length=20)                   # Numéro de téléphone de l'étudiant
+    option = models.ForeignKey(Option, on_delete=models.PROTECT,
+                               verbose_name='Filière')  # Filière de l'étudiant
+    bourse = models.BooleanField('bourse', default=False)               # Indicateur de bourse
+    level = models.ForeignKey(Level, on_delete=models.PROTECT,
+                              verbose_name='niveau')   # Niveau de l'étudiant
+    school_year = models.ForeignKey(
+        SchoolYear, on_delete=models.PROTECT,
+        null=True)  # Année scolaire de l'étudiant
 
     class Meta:
         verbose_name = 'élève'  # Nom convivial pour l'interface d'administration

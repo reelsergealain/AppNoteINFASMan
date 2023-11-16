@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
 
 {% block content %}
   <!-- BreadCrumb -->
@@ -12,14 +13,68 @@
   </nav>
 
   <div class="pb-3">
-    <h1>Ajouter un nouveau étudiant</h1>
+    <form class="card mb-grid bg-light" method="post">
+      {% csrf_token %}
 
-    <div class="col-md-6 offset-3">
-      <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-primary" type="submit">Ajouter un etudiant</button>
-      </form>
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="card-header-title">+ INSCRIPTION D'UN ETUDIANT</div>
+      </div>
+      <div class="card-body">
+        {% if form.errors %}
+        <section class="form-error mb-3 text-danger">
+          <small>Veuillez corriger les erreurs suivantes</small>
+          <small>
+            {{ form.errors }}
+          </small>
+        </section>
+        {% endif %}
+        <section class="form-row">
+          <div class="col-lg-2 col-md-6 mb-3">
+              {% render_field form.student_id %}
+          </div>
+          <div class="col-lg-4 col-md-6 mb-3">
+              {% render_field form.last_name %}
+          </div>
+          <div class="col-lg-4 col-md-6 mb-3">
+              {% render_field form.first_name %}
+          </div>
+          <div class="col-lg-2 col-md-6 mb-3">
+              {% render_field form.gender %}
+          </div>
+        </section>
+        <section class="form-row">
+          <div class="col-lg-2 col-md-6 mb-3">
+              {% render_field form.birth_date placeholder='Né le format: 01/01/2000' %}
+          </div>
+          <div class="col-lg-4 col-md-6 mb-3">
+              {% render_field form.phone %}
+          </div>
+          <div class="col-lg-4 col-md-6 mb-3">
+              {% render_field form.option %}
+          </div>
+          <div class="col-lg-2 col-md-6 mb-3">
+              {% render_field form.level %}
+          </div>
+        </section>
+        <section class="form-row">
+          <div class="col-lg-6 col-md-6 mb-3">
+              {% render_field form.email placeholder='E-mail' %}
+          </div>
+        </section>
+        <section class="form-row">
+          <div class="col-md-6">
+            <div class="custom-control custom-checkbox">
+              {% render_field form.bourse class='custom-control-input' %}
+              <label class="custom-control-label" for="{{ form.bourse.id_for_label }}">{{ form.bourse.label }}</label>
+            </div>
+          </div>
+        </section>
+        <section class="my-3">
+          <button class="btn btn-success" type="submit">Enregistrer</button>
+        </section>
+        </div>
     </div>
+
+    
   </div>
 {% endblock %}

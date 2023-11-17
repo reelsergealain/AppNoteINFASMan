@@ -1,5 +1,5 @@
 from django import forms
-from .models import Student
+from .models import SchoolYear, Student
 
 class StudentForm(forms.ModelForm):
     class Meta:
@@ -61,6 +61,30 @@ class StudentForm(forms.ModelForm):
             widget_class += f' {field_classes}' if field_name != 'bourse' else f' {checkbox_class}'
             widget_class += f' {datepicker_class}' if field_name == 'birth_date' else ''
             field.widget.attrs['class'] = widget_class.strip()
+
+            placeholder = placeholders.get(field_name)
+            if placeholder:
+                field.widget.attrs['placeholder'] = placeholder
+
+class SchoolYearForm(forms.ModelForm):
+    class Meta:
+        model = SchoolYear
+        fields = [
+            'name',
+        ]
+    def __init__(self, *args, **kwargs):
+        super(SchoolYearForm, self).__init__(*args, **kwargs)
+        self.add_bootstrap_styles()
+
+    def add_bootstrap_styles(self):
+        field_classes = 'form-control'
+
+        placeholders = {
+            'name': '2022-2023',
+        }
+
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = field_classes
 
             placeholder = placeholders.get(field_name)
             if placeholder:

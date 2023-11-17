@@ -7,5 +7,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('', include('django.contrib.auth.urls')),
     path('student-list', views.StudentsListView.as_view(), name='student_list'),
-    path('create_student/', views.StudentCreateView.as_view(), name='create_student')
+    path('create_student/', views.StudentCreateView.as_view(), name='create_student'),
+    path('create_schoolyear/', views.SchoolYearCreateView.as_view(), name='create_scholl_year'),
 ]

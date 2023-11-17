@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <link rel="stylesheet" type="text/css" href="{% static 'dist/css/adminx.css' %}" media="screen" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
-    <!--                                             
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css" />
+    {% comment %} <link rel="stylesheet" href="{% static 'dist/css/anim/loading-bar.css' %}" /> {% endcomment %}
+    <!--                                                             
       # Optional Resources
       Feel free to delete these if you don't need them in your project
-                                                 -->
+                                                                 -->
   </head>
   <body>
     <div class="adminx-container">
@@ -27,9 +28,7 @@
 
         <ul class="navbar-nav d-flex justify-content-end mr-2">
           <li class="nav-item dropdown">
-            <a class="nav-link avatar-with-name" id="navbarDropdownMenuLink" data-toggle="dropdown" href="#">
-              <img src="{% static 'demo/img/logo.png' %}">
-            </a>
+            <a class="nav-link avatar-with-name" id="navbarDropdownMenuLink" data-toggle="dropdown" href="#"><img src="{% static 'demo/img/logo.png' %}" /></a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="/admin">Mon profil</a>
               <div class="dropdown-divider"></div>
@@ -67,15 +66,36 @@
               </li>
             </ul>
           </li>
+
+          <li class="sidebar-nav-item">
+            <a class="sidebar-nav-link collapsed" data-toggle="collapse" href="#setting" aria-expanded="false" aria-controls="setting">
+              <span class="sidebar-nav-icon"><i data-feather="users"></i></span>
+              <span class="sidebar-nav-name">Paramètre</span>
+              <span class="sidebar-nav-end"><i data-feather="chevron-right" class="nav-collapse-icon"></i></span>
+            </a>
+
+            <ul class="sidebar-sub-nav collapse" id="setting">
+              <li class="sidebar-nav-item">
+                <a href="{% url 'core:create_scholl_year' %}" class="sidebar-nav-link">
+                  <span class="sidebar-nav-abbr">Li</span>
+                  <span class="sidebar-nav-name">Année scolaires</span>
+                </a>
+                <a href="{% url 'core:student_list' %}" class="sidebar-nav-link">
+                  <span class="sidebar-nav-abbr">Li</span>
+                  <span class="sidebar-nav-name">Fillière</span>
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </div>
       <!-- Sidebar End -->
 
       <!-- adminx-content-aside -->
       <div class="adminx-content">
-        <!--                                              <div class="adminx-aside">
+        <!--                                                              <div class="adminx-aside">
 
-        </div>                                              -->
+        </div>                                                              -->
 
         <div class="adminx-main-content">
           <div class="container-fluid">
@@ -96,7 +116,7 @@
     <script src="{% static 'dist/js/adminx.js' %}"></script>
 
     <!-- If you prefer vanilla JS these are the only required scripts -->
-    <!--                                              script src="./dist/js/vendor.js"></script>
-    <script src="./dist/js/adminx.vanilla.js"></script                                             -->
+    <!--                                                              script src="./dist/js/vendor.js"></script>
+    <script src="./dist/js/adminx.vanilla.js"></script                                                             -->
   </body>
 </html>

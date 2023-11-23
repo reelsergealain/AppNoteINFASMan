@@ -8,11 +8,7 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'dist/css/adminx.css' %}" media="screen" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css" />
-    {% comment %} <link rel="stylesheet" href="{% static 'dist/css/anim/loading-bar.css' %}" /> {% endcomment %}
-    <!--                                                             
-      # Optional Resources
-      Feel free to delete these if you don't need them in your project
-                                                                 -->
+    <link href="https://cdn.datatables.net/v/bs4/dt-1.13.8/datatables.min.css" rel="stylesheet">
   </head>
   <body>
     <div class="adminx-container">
@@ -69,7 +65,7 @@
 
           <li class="sidebar-nav-item">
             <a class="sidebar-nav-link collapsed" data-toggle="collapse" href="#setting" aria-expanded="false" aria-controls="setting">
-              <span class="sidebar-nav-icon"><i data-feather="users"></i></span>
+              <span class="sidebar-nav-icon"><i data-feather="settings"></i></span>
               <span class="sidebar-nav-name">Paramètre</span>
               <span class="sidebar-nav-end"><i data-feather="chevron-right" class="nav-collapse-icon"></i></span>
             </a>
@@ -112,8 +108,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+    <script src="https://cdn.datatables.net/v/bs4/dt-1.13.8/datatables.min.js"></script>
     <script src="{% static 'dist/js/vendor.js' %}"></script>
     <script src="{% static 'dist/js/adminx.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 
     <!-- If you prefer vanilla JS these are the only required scripts -->
     <!--                                                              script src="./dist/js/vendor.js"></script>

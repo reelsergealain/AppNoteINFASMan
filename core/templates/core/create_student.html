@@ -30,41 +30,42 @@
         {% endif %}
         <section class="form-row">
           <div class="col-lg-2 col-md-6 mb-3">
-              {% render_field form.student_id %}
+              {% render_field form.student_id class='form-control' %}
           </div>
           <div class="col-lg-4 col-md-6 mb-3">
-              {% render_field form.last_name %}
+              {% render_field form.last_name class='form-control' %}
           </div>
           <div class="col-lg-4 col-md-6 mb-3">
-              {% render_field form.first_name %}
+              {% render_field form.first_name class='form-control' %}
           </div>
           <div class="col-lg-2 col-md-6 mb-3">
-              {% render_field form.gender %}
+              {% render_field form.gender class='form-control' %}
           </div>
         </section>
         <section class="form-row">
           <div class="col-lg-2 col-md-6 mb-3">
-              {% render_field form.birth_date placeholder='Né le format: 01/01/2000' %}
+              {% render_field form.birth_date placeholder='Né le format: 01/01/2000' class='form-control' %}
           </div>
           <div class="col-lg-4 col-md-6 mb-3">
-              {% render_field form.phone %}
+              {% render_field form.phone class='form-control' %}
           </div>
           <div class="col-lg-4 col-md-6 mb-3">
-              {% render_field form.option %}
+              {% render_field form.option class='form-control' %}
           </div>
+
           <div class="col-lg-2 col-md-6 mb-3">
-              {% render_field form.level %}
+              {% render_field form.level class='form-control' %}
           </div>
         </section>
         <section class="form-row">
           <div class="col-lg-6 col-md-6 mb-3">
-              {% render_field form.email placeholder='E-mail' %}
+              {% render_field form.email placeholder='E-mail' class='form-control' %}
           </div>
         </section>
         <section class="form-row">
           <div class="col-md-6">
             <div class="custom-control custom-checkbox">
-              {% render_field form.bourse class='custom-control-input' %}
+              {% render_field form.bourse class='custom-control-input' class='form-control' %}
               <label class="custom-control-label" for="{{ form.bourse.id_for_label }}">{{ form.bourse.label }}</label>
             </div>
           </div>
